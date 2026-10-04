@@ -86,7 +86,9 @@ const appendValue = (value) => {
   }
   
   // Scroll input to show the end
-  display.scrollLeft = display.scrollWidth;
+  setTimeout(() => {
+    display.scrollLeft = display.scrollWidth;
+  }, 0);
 };
 
 const clearDisplay = () => {
@@ -102,7 +104,9 @@ const deleteLast = () => {
   display.value = display.value.slice(0, -1);
   
   // Scroll input to show the end
-  display.scrollLeft = display.scrollWidth;
+  setTimeout(() => {
+    display.scrollLeft = display.scrollWidth;
+  }, 0);
 };
 
 const calculate = () => {
