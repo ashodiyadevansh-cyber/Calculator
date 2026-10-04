@@ -85,51 +85,60 @@ class Calculator {
 }
 
 const appendValue = (value) => {
+  const cursorPos = display.selectionStart;
+  const currentValue = display.value;
+  
   // Auto-clear if showing error or invalid
-  if (display.value === "Error" || display.value === "Invalid") {
-    display.value = "";
+  if (currentValue === "Error" || currentValue === "Invalid") {
+    display.value = value;
+    setTimeout(() => {
+      display.focus();
+      display.setSelectionRange(value.length, value.length);
+      display.scrollLeft = display.scrollWidth;
+    }, 0);
+    return;
   }
   
-  const lastChar = display.value.slice(-1);
+  // Insert at cursor position
+  const newValue = currentValue.slice(0, cursorPos) + value + currentValue.slice(cursorPos);
+  display.value = newValue;
   
-  // Prevent multiple operators in a row
-  if (OPERATORS.includes(value) && OPERATORS.includes(lastChar)) {
-    display.value = display.value.slice(0, -1) + value;
-  } else if (OPERATORS.includes(value) && display.value === '') {
-    // Prevent leading operator (except minus for negative numbers)
-    if (value !== '-') return;
-    display.value += value;
-  } else if (value === '.') {
-    // Prevent multiple decimal points in same number
-    const lastNumber = display.value.split(/[+\-X÷]/).pop();
-    if (lastNumber.includes('.')) return;
-    display.value += value;
-  } else {
-    display.value += value;
-  }
-  
-  // Scroll input to show the end
+  // Move cursor after inserted text
   setTimeout(() => {
+    const newPos = cursorPos + value.length;
+    display.setSelectionRange(newPos, newPos);
+    display.focus();
     display.scrollLeft = display.scrollWidth;
   }, 0);
 };
 
 const clearDisplay = () => {
   display.value = "";
+  display.focus();
+  display.setSelectionRange(0, 0);
 };
 
 const deleteLast = () => {
+  const cursorPos = display.selectionStart;
+  const currentValue = display.value;
+  
   // Auto-clear if showing error or invalid
-  if (display.value === "Error" || display.value === "Invalid") {
+  if (currentValue === "Error" || currentValue === "Invalid") {
     display.value = "";
     return;
   }
-  display.value = display.value.slice(0, -1);
   
-  // Scroll input to show the end
-  setTimeout(() => {
-    display.scrollLeft = display.scrollWidth;
-  }, 0);
+  // Delete character before cursor
+  if (cursorPos > 0) {
+    const newValue = currentValue.slice(0, cursorPos - 1) + currentValue.slice(cursorPos);
+    display.value = newValue;
+    
+    // Move cursor back
+    setTimeout(() => {
+      display.setSelectionRange(cursorPos - 1, cursorPos - 1);
+      display.focus();
+    }, 0);
+  }
 };
 
 const calculate = () => {
