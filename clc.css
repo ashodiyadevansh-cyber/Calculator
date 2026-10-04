@@ -117,25 +117,26 @@
     }
     
     .input {
-        height: 120px;
+        height: 140px;
         width: 100%;
     }
     
     #input {
         width: 90%;
-        font-size: clamp(28px, 8vw, 40px);
+        font-size: clamp(32px, 10vw, 48px);
+        margin-top: 10%;
     }
     
     .button {
         width: 100%;
-        margin-top: -20px;
-        padding: 0 12px;
-        gap: clamp(8px, 2vw, 15px);
+        margin-top: -10px;
+        padding: 0 8px;
+        gap: clamp(12px, 3vw, 18px);
         box-sizing: border-box;
     }
     
     .button1 {
-        font-size: clamp(20px, 6vw, 32px);
+        font-size: clamp(24px, 7vw, 36px);
     }
 }
 
