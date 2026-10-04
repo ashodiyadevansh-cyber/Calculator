@@ -101,6 +101,8 @@ html, body {
     aspect-ratio: 1;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     transition: all 0.1s ease;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
 }
 
 .button1:hover{
