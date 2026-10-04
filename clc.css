@@ -56,8 +56,11 @@ html, body {
     overflow-y: hidden;
     scroll-behavior: auto;
     white-space: nowrap;
-    caret-color: #888;
+    caret-color: transparent;
     cursor: default;
+    pointer-events: none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #input:focus {
