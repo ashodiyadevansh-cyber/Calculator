@@ -2,6 +2,29 @@ let display = document.getElementById("input");
 
 const OPERATORS = ['+', '-', 'X', '÷'];
 
+// Validate input - allow only calculator characters
+display.addEventListener("input", (e) => {
+  let value = e.target.value;
+  
+  // Replace operators for consistency
+  value = value.replace(/\//g, "÷").replace(/\*/g, "X");
+  
+  // Remove invalid characters
+  value = value.replace(/[^0-9+\-X÷().%]/g, "");
+  
+  e.target.value = value;
+  
+  // Auto-clear error messages
+  if (value && (e.target.value === "Error" || e.target.value === "Invalid")) {
+    e.target.value = value;
+  }
+  
+  // Move cursor to end
+  setTimeout(() => {
+    e.target.scrollLeft = e.target.scrollWidth;
+  }, 0);
+});
+
 // Safe expression parser and evaluator
 class Calculator {
   constructor(expr) {
@@ -142,28 +165,16 @@ const calculate = () => {
   }
 };
 
-// Keyboard support
+// Keyboard support - only handle special keys
 document.addEventListener("keydown", (e) => {
   const key = e.key;
-  let handled = true;
-
-  if ((key >= "0" && key <= "9") || key === "." || key === "+" || key === "-") {
-    appendValue(key);
-  } else if (key === "*" || key === "x" || key === "X") {
-    appendValue("X");
-  } else if (key === "%") {
-    appendValue("%");
-  } else if (key === "/") {
-    appendValue("÷");
-  } else if (key === "Enter" || key === "=") {
+  
+  if (key === "Enter" || key === "=") {
     calculate();
-  } else if (key === "Backspace") {
-    deleteLast();
+    e.preventDefault();
   } else if (key === "Escape") {
     clearDisplay();
-  } else {
-    handled = false;
+    e.preventDefault();
   }
-
-  if (handled) e.preventDefault();
+  // Allow arrow keys, backspace, delete, and normal text input to work naturally
 });
