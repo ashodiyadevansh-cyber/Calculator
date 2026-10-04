@@ -84,7 +84,7 @@
     align-items: center;
     text-align: center;
     color: white;
-    font-size: clamp(16px, 4vw, 28px);
+    font-size: clamp(20px, 5vw, 30px);
     border-radius: 50px;
     padding: 0;
     cursor: pointer;
@@ -101,28 +101,41 @@
     transform: scale(1.15);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    
     .mainborder {
-        width: 95vw;
-        height: 90vh;
-        border-radius: 20px;
-        margin: 10px auto;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 0;
+        margin: 0;
+        max-width: none;
+        max-height: none;
     }
     
     .input {
-        height: 100px;
+        height: 120px;
         width: 100%;
     }
     
     #input {
         width: 90%;
-        font-size: clamp(20px, 5vw, 32px);
+        font-size: clamp(28px, 8vw, 40px);
     }
     
     .button {
+        width: 100%;
         margin-top: -20px;
-        padding: 0 10px;
-        gap: 10px;
+        padding: 0 12px;
+        gap: clamp(8px, 2vw, 15px);
+        box-sizing: border-box;
+    }
+    
+    .button1 {
+        font-size: clamp(20px, 6vw, 32px);
     }
 }
 
