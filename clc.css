@@ -51,10 +51,11 @@ html, body {
     font-size: clamp(28px, 8vw, 48px);
     background-color: transparent;
     border: none;
-    display: flex;
-    align-items: center;
     text-align: right;
     color: #888;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .input{
