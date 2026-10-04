@@ -65,25 +65,29 @@
 }
 
 .button{
+    width: 100%;
     margin-top: -30px;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 15px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: clamp(10px, 3vw, 20px);
+    box-sizing: border-box;
 }
 
 .button1{
-    border: 0px solid black;
+    border: none;
     background-color: black;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: white;
-    font-size: clamp(18px, 5vw, 30px);
+    font-size: clamp(16px, 4vw, 28px);
     border-radius: 50px;
-    width: 100%;
+    padding: 0;
+    cursor: pointer;
     aspect-ratio: 1;
 }
 
@@ -101,19 +105,24 @@
     .mainborder {
         width: 95vw;
         height: 90vh;
-        border-radius: 30px;
+        border-radius: 20px;
         margin: 10px auto;
     }
     
     .input {
-        height: 120px;
+        height: 100px;
+        width: 100%;
+    }
+    
+    #input {
+        width: 90%;
+        font-size: clamp(20px, 5vw, 32px);
     }
     
     .button {
         margin-top: -20px;
-        margin-left: 10px;
-        margin-right: 10px;
-        gap: 12px;
+        padding: 0 10px;
+        gap: 10px;
     }
 }
 
