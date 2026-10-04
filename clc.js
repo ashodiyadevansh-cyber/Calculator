@@ -94,6 +94,11 @@ const clearDisplay = () => {
 };
 
 const deleteLast = () => {
+  // Auto-clear if showing error or invalid
+  if (display.value === "Error" || display.value === "Invalid") {
+    display.value = "";
+    return;
+  }
   display.value = display.value.slice(0, -1);
 };
 
