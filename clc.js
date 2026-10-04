@@ -109,8 +109,11 @@ const calculate = () => {
     
     // Standalone % at end -> divide by 100
     expression = expression.replace(/%$/g, '/100');
+    
+    // Replace X with * and ÷ with /
+    expression = expression.replace(/X/g, '*').replace(/÷/g, '/');
 
-    // Validate expression format
+    // Validate expression format (now includes * and /)
     if (/[^\d+\-*/().%]/.test(expression)) {
       display.value = "Invalid";
       return;
