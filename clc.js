@@ -113,8 +113,8 @@ const calculate = () => {
     // Replace X with * and ÷ with /
     expression = expression.replace(/X/g, '*').replace(/÷/g, '/');
 
-    // Validate expression format (now includes * and /)
-    if (/[^\d+\-*/().%]/.test(expression)) {
+    // Validate expression format - only allow valid characters
+    if (!/^[\d+\-*/().%]+$/.test(expression)) {
       display.value = "Invalid";
       return;
     }
