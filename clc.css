@@ -18,6 +18,9 @@ html, body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .mainborder{
@@ -42,6 +45,7 @@ html, body {
 
 #input{
     width: 90%;
+    max-width: 500px;
     padding: 20px;
     caret-color: transparent;
     font-size: clamp(28px, 8vw, 48px);
@@ -80,6 +84,7 @@ html, body {
 
 .button{
     width: 90%;
+    max-width: 500px;
     flex-shrink: 0;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -111,5 +116,32 @@ html, body {
 .button1:active{
     transform: scale(0.95);
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+@media (min-width: 769px) {
+    .mainborder {
+        width: 500px;
+        height: auto;
+        margin: 0 auto;
+    }
+    
+    .calc-container {
+        height: auto;
+    }
+    
+    #input {
+        width: 100%;
+        font-size: 40px;
+    }
+    
+    .button {
+        width: 100%;
+        margin: 20px auto;
+        gap: 15px;
+    }
+    
+    .button1 {
+        font-size: 28px;
+    }
 }
 
