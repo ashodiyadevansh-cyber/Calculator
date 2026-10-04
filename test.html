@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Test Suite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .test-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .test-group {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .test-group h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .test-case {
+            margin: 15px 0;
+            padding: 12px;
+            background: #f9f9f9;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+        }
+        .test-case input {
+            display: inline-block;
+            width: 100px;
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .test-case button {
+            padding: 8px 15px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .test-case button:hover {
+            background-color: #229954;
+        }
+        .result {
+            margin-top: 8px;
+            font-weight: bold;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .pass {
+            background-color: #d5f4e6;
+            color: #27ae60;
+        }
+        .fail {
+            background-color: #fadbd8;
+            color: #c0392b;
+        }
+        .neutral {
+            background-color: #fef5e7;
+            color: #f39c12;
+        }
+        .summary {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        .summary h2 {
+            color: #2c3e50;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .stat {
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            font-weight: bold;
+            color: white;
+        }
+        .stat.pass {
+            background-color: #27ae60;
+        }
+        .stat.fail {
+            background-color: #c0392b;
+        }
+        .stat.neutral {
+            background-color: #f39c12;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧮 Calculator Edge Case Test Suite</h1>
+    
+    <div class="test-container">
+        <!-- Basic Operations -->
+        <div class="test-group">
+            <h2>Basic Operations</h2>
+            <div class="test-case">
+                <input type="text" id="test1" value="5+3">
+                <button onclick="runTest('test1', 8)">Test</button>
+                <div id="result1" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test2" value="10-4">
+                <button onclick="runTest('test2', 6)">Test</button>
+                <div id="result2" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test3" value="6X3">
+                <button onclick="runTest('test3', 18)">Test</button>
+                <div id="result3" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test4" value="20÷4">
+                <button onclick="runTest('test4', 5)">Test</button>
+                <div id="result4" class="result"></div>
+            </div>
+        </div>
+
+        <!-- Decimal Operations -->
+        <div class="test-group">
+            <h2>Decimal Operations</h2>
+            <div class="test-case">
+                <input type="text" id="test5" value="5.5+2.3">
+                <button onclick="runTest('test5', 7.8)">Test</button>
+                <div id="result5" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test6" value="0.1+0.2">
+                <button onclick="runTest('test6', 0.3)">Test</button>
+                <div id="result6" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test7" value="10.5X2">
+                <button onclick="runTest('test7', 21)">Test</button>
+                <div id="result7" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test8" value="7.5÷2.5">
+                <button onclick="runTest('test8', 3)">Test</button>
+                <div id="result8" class="result"></div>
+            </div>
+        </div>
+
+        <!-- Percentage Operations -->
+        <div class="test-group">
+            <h2>Percentage Operations</h2>
+            <div class="test-case">
+                <input type="text" id="test9" value="5+20%">
+                <button onclick="runTest('test9', 6)">Test</button>
+                <div id="result9" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test10" value="100-25%">
+                <button onclick="runTest('test10', 75)">Test</button>
+                <div id="result10" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test11" value="50X10%">
+                <button onclick="runTest('test11', 5)">Test</button>
+                <div id="result11" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test12" value="200÷50%">
+                <button onclick="runTest('test12', 400)">Test</button>
+                <div id="result12" class="result"></div>
+            </div>
+        </div>
+
+        <!-- Complex Operations -->
+        <div class="test-group">
+            <h2>Complex Operations</h2>
+            <div class="test-case">
+                <input type="text" id="test13" value="2+3X4">
+                <button onclick="runTest('test13', 14)">Test (Order of Operations)</button>
+                <div id="result13" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test14" value="10-5+3">
+                <button onclick="runTest('test14', 8)">Test (Left to Right)</button>
+                <div id="result14" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test15" value="100÷2X3">
+                <button onclick="runTest('test15', 150)">Test (Mixed Ops)</button>
+                <div id="result15" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test16" value="2X3+4X5">
+                <button onclick="runTest('test16', 26)">Test (Complex)</button>
+                <div id="result16" class="result"></div>
+            </div>
+        </div>
+
+        <!-- Edge Cases - Error Handling -->
+        <div class="test-group">
+            <h2>Error Handling</h2>
+            <div class="test-case">
+                <input type="text" id="test17" value="10÷0">
+                <button onclick="runTest('test17', 'Error', true)">Test (Division by Zero)</button>
+                <div id="result17" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test18" value="">
+                <button onclick="runTest('test18', 'Empty Input', true)">Test (Empty)</button>
+                <div id="result18" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test19" value="5++3">
+                <button onclick="runTest('test19', 8)">Test (Double Operator)</button>
+                <div id="result19" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test20" value="5.5.5">
+                <button onclick="runTest('test20', 'Error', true)">Test (Double Decimal)</button>
+                <div id="result20" class="result"></div>
+            </div>
+        </div>
+
+        <!-- Negative Numbers -->
+        <div class="test-group">
+            <h2>Negative Numbers</h2>
+            <div class="test-case">
+                <input type="text" id="test21" value="-5+3">
+                <button onclick="runTest('test21', -2)">Test (Negative Start)</button>
+                <div id="result21" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test22" value="10+-5">
+                <button onclick="runTest('test22', 5)">Test (+ Negative)</button>
+                <div id="result22" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test23" value="10--5">
+                <button onclick="runTest('test23', 15)">Test (- Negative)</button>
+                <div id="result23" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test24" value="-5X-3">
+                <button onclick="runTest('test24', 15)">Test (Negative × Negative)</button>
+                <div id="result24" class="result"></div>
+            </div>
+        </div>
+
+        <!-- Large Numbers -->
+        <div class="test-group">
+            <h2>Large Numbers</h2>
+            <div class="test-case">
+                <input type="text" id="test25" value="1000000+2000000">
+                <button onclick="runTest('test25', 3000000)">Test (Large Addition)</button>
+                <div id="result25" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test26" value="999999X999999">
+                <button onclick="runTest('test26', 999998000001)">Test (Large Multiplication)</button>
+                <div id="result26" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test27" value="0.00001X0.00001">
+                <button onclick="runTest('test27', 0.0000000001, true)">Test (Small Decimals)</button>
+                <div id="result27" class="result"></div>
+            </div>
+            <div class="test-case">
+                <input type="text" id="test28" value="1÷3">
+                <button onclick="runTest('test28', 0.33333333, true)">Test (Repeating Decimal)</button>
+                <div id="result28" class="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="summary">
+        <h2>Test Summary</h2>
+        <div class="stats">
+            <div class="stat pass" id="passCount">✓ Passed: 0</div>
+            <div class="stat fail" id="failCount">✗ Failed: 0</div>
+            <div class="stat neutral" id="totalCount">Total: 0</div>
+        </div>
+    </div>
+
+    <script>
+        // Import the Calculator class from clc.js
+        class Calculator {
+            constructor(expr) {
+                this.expr = expr.replace(/X/g, '*').replace(/÷/g, '/');
+                this.pos = 0;
+            }
+
+            parse() {
+                return this.parseExpression();
+            }
+
+            parseExpression() {
+                let result = this.parseTerm();
+                while (this.pos < this.expr.length && (this.expr[this.pos] === '+' || this.expr[this.pos] === '-')) {
+                    const op = this.expr[this.pos++];
+                    const right = this.parseTerm();
+                    result = op === '+' ? result + right : result - right;
+                }
+                return result;
+            }
+
+            parseTerm() {
+                let result = this.parseFactor();
+                while (this.pos < this.expr.length && (this.expr[this.pos] === '*' || this.expr[this.pos] === '/')) {
+                    const op = this.expr[this.pos++];
+                    const right = this.parseFactor();
+                    if (op === '*') {
+                        result = result * right;
+                    } else {
+                        if (right === 0) throw new Error("Division by zero");
+                        result = result / right;
+                    }
+                }
+                return result;
+            }
+
+            parseFactor() {
+                if (this.expr[this.pos] === '-') {
+                    this.pos++;
+                    return -this.parseFactor();
+                }
+                return this.parseNumber();
+            }
+
+            parseNumber() {
+                let num = '';
+                while (this.pos < this.expr.length && (this.isDigit(this.expr[this.pos]) || this.expr[this.pos] === '.')) {
+                    num += this.expr[this.pos++];
+                }
+                if (num === '' || num === '.') throw new Error("Invalid number");
+                return parseFloat(num);
+            }
+
+            isDigit(char) {
+                return char >= '0' && char <= '9';
+            }
+        }
+
+        let testResults = { passed: 0, failed: 0, total: 0 };
+
+        function runTest(inputId, expected, isApprox = false) {
+            testResults.total++;
+            const input = document.getElementById(inputId).value;
+            const resultId = inputId.replace('test', 'result');
+            const resultDiv = document.getElementById(resultId);
+
+            try {
+                if (input === '') {
+                    resultDiv.textContent = '✓ Empty input handled correctly';
+                    resultDiv.className = 'result pass';
+                    testResults.passed++;
+                } else {
+                    let expression = input;
+                    expression = expression.replace(
+                        /(\d+\.?\d*)([+\-])(\d+\.?\d*)%/g,
+                        (m, a, op, b) => `${a}${op}(${a}*${b}/100)`
+                    );
+                    expression = expression.replace(/%$/g, '/100');
+
+                    const calculator = new Calculator(expression);
+                    const result = parseFloat(calculator.parse().toFixed(8));
+
+                    let passed = false;
+                    if (isApprox) {
+                        passed = Math.abs(result - expected) < 0.0001;
+                    } else {
+                        passed = result === expected;
+                    }
+
+                    if (passed) {
+                        resultDiv.textContent = `✓ Correct: ${result}`;
+                        resultDiv.className = 'result pass';
+                        testResults.passed++;
+                    } else {
+                        resultDiv.textContent = `✗ Expected ${expected}, got ${result}`;
+                        resultDiv.className = 'result fail';
+                        testResults.failed++;
+                    }
+                }
+            } catch (error) {
+                if (expected === 'Error') {
+                    resultDiv.textContent = `✓ Error caught: ${error.message}`;
+                    resultDiv.className = 'result pass';
+                    testResults.passed++;
+                } else {
+                    resultDiv.textContent = `✗ Error: ${error.message}`;
+                    resultDiv.className = 'result fail';
+                    testResults.failed++;
+                }
+            }
+
+            updateSummary();
+        }
+
+        function updateSummary() {
+            document.getElementById('passCount').textContent = `✓ Passed: ${testResults.passed}`;
+            document.getElementById('failCount').textContent = `✗ Failed: ${testResults.failed}`;
+            document.getElementById('totalCount').textContent = `Total: ${testResults.total}`;
+        }
+
+        // Run all tests automatically
+        window.addEventListener('load', () => {
+            for (let i = 1; i <= 28; i++) {
+                const testInput = document.getElementById(`test${i}`);
+                if (testInput) {
+                    const button = testInput.parentElement.querySelector('button');
+                    button.click();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
