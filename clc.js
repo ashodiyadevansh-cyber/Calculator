@@ -62,6 +62,11 @@ class Calculator {
 }
 
 const appendValue = (value) => {
+  // Auto-clear if showing error or invalid
+  if (display.value === "Error" || display.value === "Invalid") {
+    display.value = "";
+  }
+  
   const lastChar = display.value.slice(-1);
   
   // Prevent multiple operators in a row
