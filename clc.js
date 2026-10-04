@@ -2,29 +2,6 @@ let display = document.getElementById("input");
 
 const OPERATORS = ['+', '-', 'X', '÷'];
 
-// Validate input - allow only calculator characters
-display.addEventListener("input", (e) => {
-  let value = e.target.value;
-  
-  // Replace operators for consistency
-  value = value.replace(/\//g, "÷").replace(/\*/g, "X");
-  
-  // Remove invalid characters
-  value = value.replace(/[^0-9+\-X÷().%]/g, "");
-  
-  e.target.value = value;
-  
-  // Auto-clear error messages
-  if (value && (e.target.value === "Error" || e.target.value === "Invalid")) {
-    e.target.value = value;
-  }
-  
-  // Move cursor to end
-  setTimeout(() => {
-    e.target.scrollLeft = e.target.scrollWidth;
-  }, 0);
-});
-
 // Safe expression parser and evaluator
 class Calculator {
   constructor(expr) {

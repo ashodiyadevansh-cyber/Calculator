@@ -57,15 +57,11 @@ html, body {
     scroll-behavior: auto;
     white-space: nowrap;
     caret-color: #888;
+    cursor: default;
 }
 
 #input:focus {
     outline: none;
-    caret-color: #888;
-}
-
-#input::selection {
-    background-color: rgba(136, 136, 136, 0.3);
 }
 
 .input{
