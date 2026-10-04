@@ -53,9 +53,8 @@ html, body {
     border: none;
     text-align: right;
     color: #888;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .input{

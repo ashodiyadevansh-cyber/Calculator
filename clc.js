@@ -72,21 +72,21 @@ const appendValue = (value) => {
   // Prevent multiple operators in a row
   if (OPERATORS.includes(value) && OPERATORS.includes(lastChar)) {
     display.value = display.value.slice(0, -1) + value;
-    return;
-  }
-
-  // Prevent leading operator (except minus for negative numbers)
-  if (OPERATORS.includes(value) && display.value === '') {
+  } else if (OPERATORS.includes(value) && display.value === '') {
+    // Prevent leading operator (except minus for negative numbers)
     if (value !== '-') return;
-  }
-
-  // Prevent multiple decimal points in same number
-  if (value === '.') {
+    display.value += value;
+  } else if (value === '.') {
+    // Prevent multiple decimal points in same number
     const lastNumber = display.value.split(/[+\-X÷]/).pop();
     if (lastNumber.includes('.')) return;
+    display.value += value;
+  } else {
+    display.value += value;
   }
-
-  display.value += value;
+  
+  // Scroll input to show the end
+  display.scrollLeft = display.scrollWidth;
 };
 
 const clearDisplay = () => {
@@ -100,6 +100,9 @@ const deleteLast = () => {
     return;
   }
   display.value = display.value.slice(0, -1);
+  
+  // Scroll input to show the end
+  display.scrollLeft = display.scrollWidth;
 };
 
 const calculate = () => {
